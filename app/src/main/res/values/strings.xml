@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">PeopleCounter</string>
+    <string name="total_0">Total: 0</string>
+    <string name="reset">Reset</string>
+</resources>
