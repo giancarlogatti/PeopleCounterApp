@@ -13,7 +13,7 @@ import org.hamcrest.Matcher
 
 /*
     Wanted to figure out how to test the state after rotation and found this
-    https://gist.github.com/nbarraille/03e8910dc1d415ed9740,worked like a charm!
+    https://gist.github.com/nbarraille/03e8910dc1d415ed9740, worked like a charm!
  */
 class OrientationChangeAction(private val orientation: Int): ViewAction {
 
@@ -49,5 +49,4 @@ class OrientationChangeAction(private val orientation: Int): ViewAction {
         }
         return null
     }
-
 }
