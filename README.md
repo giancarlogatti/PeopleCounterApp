@@ -4,12 +4,12 @@ One of the first decisions was regarding how I would reference widgets in the la
 but I still feel it's a very valid solution if you wanted to make use of that feature. I chose View Binding because it is very simple and performant and I personally prefer to just do the binding of the data in the Activity/Fragment as you can still make use of Kotlin delegates to achieve a reactive style that is very readable; but you could also expose a variable to the Data Binding layout and approach the binding of 
 data to widgets in a more declarative way. 
 
-Another decision was what mechanism I wanted to use to store the counter data. I chose to use Shared Preferences because the data were just integers, and it's very simple to read and write data
-to shared preferences for easy access. SQL would be more suited for relational data that has more data fields
-as this solution is optimized for retrieving data through indexing columns. To use Room or another ORM would require a lot of boilerplate code, and this would be overkill for very primitive data. Saving to external storage or internal storage also requires boiler plate and error-handling code, external storage 
+Another decision was what to use to store the counter data. I chose to use Shared Preferences because I'm just storing integers, and it's very simple to read and write data
+to shared preferences. SQL would be more suited for relational data that has more data fields
+as this solution is optimized for retrieving data through indexing columns. To use Room or another ORM would require a lot of boilerplate code, and this would be overkill for very primitive data. Saving to external storage or internal storage also requires boiler plate and error-handling code; external storage 
 would also make the data public to other applications which wasn't part of the spec. ViewModel + SaveStateHandle or restoring state bundle in onCreate/onRestoreInstanceState would work well for restoring state after rotation and surviving process death but would
 not help with retaining data if user force quits. I thought about passing shared preferences to the ViewModel and then writing to shared preferences once onCleared is called, but 
-there is no flow control when an app is forcibly killed for example, and that that one needs to plan around a known state which is why I write to shared preferences every time the value changes.  
+there is no flow control when a user closes an app, for example, which is why I write to shared preferences every time the value changes.  
 
 Another decision was to use the Kotlin Delegate - observable. The decision to use this was because we had two pieces of data that were affected by pressing either the + or - button and when those
 2 different data changed, multiple things needed to happen such as writing it to the preferences, changing text color, etc. While I could've just added the additional logic to the button's click listener function, 
