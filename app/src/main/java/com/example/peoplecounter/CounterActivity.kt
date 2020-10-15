@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.peoplecounter.databinding.ActivityCounterBinding
@@ -16,7 +15,7 @@ class CounterActivity : AppCompatActivity() {
 
     companion object{
         //when this number is exceeded, the text that reflects this value changes from blue to red
-        const val MAX_THRESHOLD = 15
+        const val MAX_CAPACITY_THRESHOLD = 15
         const val TOTAL_COUNT_KEY = "total_count"
         const val TOTAL_PEOPLE_KEY = "total_people"
     }
@@ -26,12 +25,12 @@ class CounterActivity : AppCompatActivity() {
 
     private var totalPeople by Delegates.observable(0){ _, _, newCount ->
         binding.tvPeopleCounter.text = "$newCount People"
-        if(newCount > MAX_THRESHOLD){
+        if(newCount > MAX_CAPACITY_THRESHOLD){
             binding.tvPeopleCounter.setTextColor(Color.RED)
         } else {
             binding.tvPeopleCounter.setTextColor(Color.BLUE)
         }
-        if(newCount >= 1){ //button to reduce the total people count needs to be visible
+        if(newCount >= 1){
             binding.btnReduce.visibility = View.VISIBLE
         } else {
             binding.btnReduce.visibility = View.INVISIBLE
